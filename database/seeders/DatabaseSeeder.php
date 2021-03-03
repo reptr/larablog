@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(BlogsTableSeeder::class);
         $this->call([
             RolesTableSeeder::class,
-            BlogsTableSeeder::class
+            BlogsTableSeeder::class,
+            CategoryTableSeeder::class,
         ]);
     }
 }
