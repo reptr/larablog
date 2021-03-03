@@ -40,4 +40,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // One To Many (Inverse) / Belongs To
+    //
+    /**
+     * Role - One To Many (Inverse) / Belongs To
+     *
+     * doc https://laravel.com/docs/8.x/eloquent-relationships#one-to-many-inverse
+     * @return void
+     */
+    public function role()
+    {
+       return $this->belongsTo(Role::class);
+    }
 }
