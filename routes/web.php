@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\BlogsController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,9 @@ Route::prefix('blogs')->group(function () {
     Route::get('/{id}/edit', [BlogsController::class, 'edit'])->name('blogs.edit');
     Route::patch('/{id}/update', [BlogsController::class, 'update'])->name('blogs.update');
     Route::delete('/{id}/delete', [BlogsController::class, 'delete'])->name('blogs.delete');
+});
+
+Route::prefix('admin')->group(function () {
+    // Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('admin');
+    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware(['admin', 'auth']);
 });
