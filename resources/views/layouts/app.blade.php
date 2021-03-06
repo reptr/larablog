@@ -35,6 +35,8 @@
                     <ul class="navbar-nav mr-auto">
                         {{-- <li><a class="nav-link" href="
                             {{ route('blogs.create') }}">Create</a></li> --}}
+                        <li><a class="nav-link" href="
+                        {{ route('admin') }}">Admin</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
