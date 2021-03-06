@@ -14,9 +14,20 @@
                 <div class="card mb-3">
                     <div class="card-header text-bold">
                         {{ $blog->title }}
+
+                        <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-warning float-right">Edit</a>
                     </div>
                     <div class="card-body">
                         <p>{{ $blog->body }}</p>
+                        {{-- karena collection / array utk $blog->category  --}}
+                        {{-- <p>{{ $blog->category[0] }}</p> --}}
+
+                        <hr>
+                        <p class="font-weight-bold">Categories :
+                        @foreach ($blog->category as $category)
+                            <span><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></span>
+                        @endforeach
+                        </p>
                     </div>
                 </div>
             </div>
