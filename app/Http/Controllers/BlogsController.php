@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 class BlogsController extends Controller
@@ -14,7 +16,7 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->get();
         return view('blogs.index', compact('blogs'));
     }
 
@@ -25,7 +27,8 @@ class BlogsController extends Controller
      */
     public function create()
     {
-        return view('blogs.create');
+        $categories = Category::latest()->get();
+        return view('blogs.create', compact('categories'));
     }
 
     /**
@@ -45,6 +48,10 @@ class BlogsController extends Controller
         /* cara ke dua, $fillable harus di set di Model */
         $input = $request->all();
         $blog = Blog::create($input);
+        // sync dengan categories
+        if ($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
 
         return redirect(route('blogs'));
     }
@@ -70,9 +77,18 @@ class BlogsController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::latest()->get();
         $blog = Blog::findOrFail($id);
 
-        return view('blogs.edit', compact('blog'));
+        // filter blog categories ($bc)
+        $bc = [];
+        foreach ($blog->category as $c) {
+            $bc[] = $c->id;
+        }
+
+        $filtered = Arr::except($categories, $bc);
+
+        return view('blogs.edit', compact('blog', 'categories', 'filtered'));
     }
 
     /**
@@ -88,6 +104,11 @@ class BlogsController extends Controller
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
+
+        // sync dengan categories
+        if ($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
 
         return redirect(route('blogs'));
     }

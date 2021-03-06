@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,5 @@ Route::prefix('admin')->group(function () {
     // Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('admin');
     Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware(['admin', 'auth']);
 });
+
+Route::resource('categories', CategoryController::class);
