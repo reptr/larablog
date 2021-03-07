@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BlogsController extends Controller
@@ -47,6 +48,12 @@ class BlogsController extends Controller
 
         /* cara ke dua, $fillable harus di set di Model */
         $input = $request->all();
+
+        // meta stuff
+        $input['slug'] = Str::slug($request->title, '-');
+        $input['meta_title'] = Str::limit($request->title, 55);
+        $input['meta_description'] = Str::limit($request->body, 155);
+
         // image upload
         if ($file = $request->file('featured_image')) {
             // dd($file->getClientOriginalName());
