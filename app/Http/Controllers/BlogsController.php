@@ -47,6 +47,17 @@ class BlogsController extends Controller
 
         /* cara ke dua, $fillable harus di set di Model */
         $input = $request->all();
+        // image upload
+        if ($file = $request->file('featured_image')) {
+            // dd($file->getClientOriginalName());
+            $name = uniqid() . $file->getClientOriginalName();
+            // upload ke folder public/images/featured_image
+            $file->move('images/featured_image', $name);
+            // insert ke variable featured_image field database
+            // input -> array, ($input = $request->all();
+            $input['featured_image'] = $name;
+        }
+
         $blog = Blog::create($input);
         // sync dengan categories
         if ($request->category_id) {
