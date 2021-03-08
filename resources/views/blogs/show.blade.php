@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
+
 @section('content')
+
+@section('meta_title')
+    {{ $blog->meta_title }}
+@endsection
+
+@section('meta_description')
+    {{ $blog->meta_description }}
+@endsection
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 mb-2">
