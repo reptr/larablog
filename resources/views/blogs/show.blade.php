@@ -3,13 +3,19 @@
 
 @section('content')
 
-@section('meta_title')
+@php
+    $id_blog = $blog->id //utk passing data $id_blog ke partials.meta_dynamic
+@endphp
+
+@include('partials.meta_dynamic')
+
+{{-- @section('meta_title')
     {{ $blog->meta_title }}
 @endsection
 
 @section('meta_description')
     {{ $blog->meta_description }}
-@endsection
+@endsection --}}
 
     <div class="container">
         <div class="row justify-content-center">
