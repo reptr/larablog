@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="body" id="" cols="30" rows="10" class="form-control mytextarea"></textarea>
                         </div>
                         <div class="form-group form-check form-check-inline">
                             @foreach ($categories as $category)

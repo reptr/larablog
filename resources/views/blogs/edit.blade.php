@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea name="body" id="" cols="30" rows="10" class="form-control">{{ $blog->body }}</textarea>
+                            <textarea name="body" id="" cols="30" rows="10" class="form-control mytextarea">{{ $blog->body }}</textarea>
                         </div>
 
                         <div class="form-group form-check form-check-inline">

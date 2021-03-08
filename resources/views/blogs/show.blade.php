@@ -42,7 +42,9 @@
                         <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-warning float-right">Edit</a>
                     </div>
                     <div class="card-body">
-                        <p>{{ $blog->body }}</p>
+                        {{-- <p>{{ $blog->body }}</p> karena pakai tinymce--}}
+                        {!! $blog->body !!}
+
                         {{-- karena collection / array utk $blog->category  --}}
                         {{-- <p>{{ $blog->category[0] }}</p> --}}
 
