@@ -35,7 +35,8 @@
                                 <br>-->
                         </div>
                         <div class="card-body">
-                            <p>{{ $blog->body }}</p>
+                            {{-- <p>{{ $blog->body }}</p> karena pakai tinymce--}}
+                            {!! $blog->body !!}
                         </div>
                     </div>
                 @endforeach
