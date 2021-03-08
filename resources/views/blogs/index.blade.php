@@ -4,6 +4,7 @@
 @section('content')
 
 @include('partials.meta_static')
+{{-- @include('partials.meta_dynamic') --}}
 
 <div class="container">
         <div class="row justify-content-center">
